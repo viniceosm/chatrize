@@ -13,14 +13,34 @@ body {
     background: white;
 }
 
-.bgbody {
-    background: url('../img/lv.jpg');
-    background-size: auto 100vh;
-    height: 100vh;
+.bgbody > img {
     width: 100%;
-    position: absolute;
-    filter: blur(30px);
-    background-position: 478px 0px;
+    height: 100%;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    pointer-events: none;
+}
+
+.bgbody {
+    background: no-repeat center center fixed; 
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    display: block;
+    left: -5px;
+    top:-5px;
+    bottom:-5px;
+    position: fixed;
+    right: -5px;
+    z-index: 0;
+    -webkit-filter: blur(20px);
+    -moz-filter: blur(20px);
+    -o-filter: blur(20px);
+    -ms-filter: blur(20px);
+    filter: blur(20px);
+    margin:-25px;
 }
 
 .panelogin {
