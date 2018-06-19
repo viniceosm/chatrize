@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('head') %>
+</head>
+<body>
+	<div class="bgbody">
+	<img src="../img/lv.jpg">
+	</div>
+	<div class="wrapper">
+    	<div class="header">
+			<div class="container-fluid">
+       			<div class="row">
+          			<div class="col col-xs-12 col-sm-6 col-md-4 col-md-offset-1 top30">
+            			<div class="panel header">
+              				<div class="panel-body">
+                				<h3 class="text-light">
+                                    <div class="pull-left">
+                                        <%= usuario.nome %>
+                                    </div>
+                                    <div class="pull-right">
+                                        <button class="btn btn-primary btn-just-icon btn-round">
+                                           <i class="material-icons">group_add</i>
+                                        </button>
+                                    </div>
+                                </h3>
+				            </div>
+						</div>
+                        <div class="panel contatos">
+              				<div class="panel-body">
+                				
+                                <% for(var i = 1; i <= 10; i++) { %>
+                                    <div class="panel contato">
+                                        <div class="panel-body">
+                                            <h3 class="text-light">
+                                                <i class="material-icons">
+                                                account_circle
+                                                </i>
+                                                contato <%= i %></h3>
+                                        </div>
+                                    </div>
+                                <% } %>
+				            </div>
+						</div>
+          			</div>
+
+                    <div class="col col-xs-12 col-sm-6 col-md-4 top30">
+                        <div class="panel header">
+                            <div class="panel-body">
+                                <h3 class="text-light">
+                                    <div class="pull-left">
+                                        Contato 1
+                                    </div>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="panel conversas">
+                            <div class="panel-body">
+
+                            </div>
+                        </div>
+                    </div>
+        		</div>
+      		</div>
+		</div>
+	</div>
+</body>
+</html>

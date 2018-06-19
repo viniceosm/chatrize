@@ -1,4 +1,3 @@
-const express = require('express');
 const model = require('./../models/usuarios')();
 
 const crud = {

@@ -43,8 +43,24 @@ body {
     margin:-25px;
 }
 
-.panelogin {
+.panelogin, .panel.header, .panel.conversas, .panel.contatos, .panel.contato {
     background-color: #0000004a;
+}
+.panel.header, .panel.conversas, .panel.contatos, .panel.contato {
+    height: 109px;
+}
+.panel.conversas, .panel.contatos {
+    height: 75vh;
+    overflow: auto;
+}
+.panel.contatos > .panel-body {
+    padding: 5px;
+}
+.panel.contato {
+    margin: 0px 0px 5px 0px;
+}
+.panel.header > .panel-body .btn {
+    margin: 0px;
 }
 
 @media only screen and (min-width: 600px) {
