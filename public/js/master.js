@@ -2,6 +2,18 @@ var socket;
 socket = io.connect();
 
 $(document).ready(function () {
+    var href = window.location.href;
+    href = href.split('/');
+    href.shift();
+    href.shift();
+    href = href.join('/');
+    href = href.substring(href.indexOf('/'), href.length);
+
+    if (href == '/todos') {
+        // Se for sala todos
+        socket.emit('conectouSalaTodos');
+    }
+
     //campo usuario cadastro
     $('#formCadastroUsuario #txtNome').on('input', function (e) {
         validaBarraUsuario();
@@ -15,6 +27,14 @@ $(document).ready(function () {
         }
         e.preventDefault();
     });
+
+    $('#paneMensagem').submit(function () {
+        if ($('#txtMensagem').val() != "") {
+            socket.emit('chatMessage', $('#txtMensagem').val());
+            $('#txtMensagem').val('');
+        }
+        return false;
+    });
 });
 
 socket.on('retornoCadastroUsuario', function () {
@@ -23,6 +43,10 @@ socket.on('retornoCadastroUsuario', function () {
 
 socket.on('erroCadastrarUsuario', function (data) {
     $('#msgValUsuario').html(data);
+});
+
+socket.on('retornoChatMessage', function (dado) {
+    $('#mensagens').append('<li><strong>' + dado.user + '</strong>:' + dado.msg);
 });
 
 function validaBarraUsuario() {

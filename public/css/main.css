@@ -4,6 +4,8 @@
 .top15 { margin-top:15px; }
 .top17 { margin-top:17px; }
 .top30 { margin-top:30px; }
+.top20 { margin-top:20px; }
+.top25 { margin-top:25px; }
 .top71 { margin-top:71px; }
 .top100 { margin-top:100px; }
 
@@ -50,7 +52,7 @@ body {
     height: 109px;
 }
 .panel.conversas, .panel.contatos {
-    height: 75vh;
+    height: 73vh;
     overflow: auto;
 }
 .panel.contatos > .panel-body {
@@ -61,6 +63,24 @@ body {
 }
 .panel.header > .panel-body .btn {
     margin: 0px;
+}
+
+#mensagens {
+    color: white;
+    height: 55vh;
+    overflow: auto;
+}
+
+#mensagens li {
+    list-style: none;
+}
+
+.form-control {
+    color: white;
+}
+
+.nopadding-xs {
+    padding: 0px;
 }
 
 @media only screen and (min-width: 600px) {

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('head') %>
+</head>
+<body>
+	<div class="bgbody">
+	<img src="../img/lv.jpg">
+	</div>
+	<div class="wrapper">
+    	<div class="header">
+			<div class="container-fluid">
+       			<div class="row">
+                    <div class="col col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 top25 nopadding-xs">
+                        <div class="panel header">
+                            <div class="panel-body">
+                                <h3 class="text-light">
+                                    <div class="pull-left">
+                                        Sala Todos
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="/sair">
+                                            <button class="btn btn-primary btn-just-icon btn-round">
+                                            <i class="material-icons">exit_to_app</i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="panel conversas">
+                            <div class="panel-body">
+                                <ul id="mensagens"></ul>
+                                <form id="paneMensagem">
+                                    <input type="text" class="form-control" name="txtMensagem" id="txtMensagem" placeholder="Digite uma mensagem" autocomplete="off">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+        		</div>
+      		</div>
+		</div>
+	</div>
+</body>
+</html>

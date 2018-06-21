@@ -26,12 +26,7 @@ router.get('/', (req, res) => {
 	if (!session.exist) {
 		res.redirect('/login');
 	} else {
-		var session = req.session;
-		cUsuarios.pesquisarPorId(session._id, (usuario) => {
-			res.render('home', {
-				usuario
-			});
-		});
+		res.redirect('/todos');
 	}
 });
 
@@ -49,6 +44,7 @@ router.post('/logar', function (req, res) {
 		if (valido) {
 			session = req.session;
 			session.exist = true;
+			session.nome = usuario.nome;
 			session._id = usuario._id;
 			res.redirect('/logando');
 		} else {
@@ -69,6 +65,15 @@ router.get('/logando', function (req, res) {
 router.get('/sair', function (req, res) {
 	req.session.destroy(function () {
 		res.redirect('/login');
+	});
+});
+
+router.get('/todos', function(req, res) {
+	var session = req.session;
+	cUsuarios.pesquisarPorId(session._id, (usuario) => {
+		res.render('todos', {
+			usuario
+		});
 	});
 });
 
