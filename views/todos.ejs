@@ -5,7 +5,7 @@
 </head>
 <body>
 	<div class="bgbody">
-	<img src="../img/lv.jpg">
+	    <img src="../img/yo.jpg">
 	</div>
 	<div class="wrapper">
     	<div class="header">
@@ -16,7 +16,7 @@
                             <div class="panel-body">
                                 <h3 class="text-light">
                                     <div class="pull-left">
-                                        Sala Todos
+                                        Sala de todos
                                     </div>
                                     <div class="pull-right">
                                         <a href="/sair">
@@ -29,12 +29,32 @@
                             </div>
                         </div>
 
+                        <ul class="nav nav-tabs nav-yellow">
+                            <li class="active">
+                                <a data-toggle="tab" href="#perfil">Mensagem</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#produtos">Conectados</a>
+                            </li>
+                        </ul>
+
                         <div class="panel conversas">
                             <div class="panel-body">
-                                <ul id="mensagens"></ul>
-                                <form id="paneMensagem">
-                                    <input type="text" class="form-control" name="txtMensagem" id="txtMensagem" placeholder="Digite uma mensagem" autocomplete="off">
-                                </form>
+                                <div class="tab-content">
+                                    <div id="perfil" class="tab-pane fade in active">
+                                        <ul id="mensagens"></ul>
+                                        <form id="paneMensagem">
+                                            <input type="text" class="form-control" name="txtMensagem" id="txtMensagem" placeholder="Digite uma mensagem" autocomplete="off">
+                                        </form>
+                                    </div>
+
+                                    <div id="produtos" class="tab-pane fade">
+                                        <ul id="pessoasOnline"></ul>
+                                    </div>
+
+                                    <div id="comanda" class="tab-pane fade">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

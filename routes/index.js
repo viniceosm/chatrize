@@ -21,13 +21,20 @@ router.use(sessionMiddleware);
 
 const cUsuarios = require('./../mongo/controller/usuarios');
 
-router.get('/', (req, res) => {
-	var session = req.session;
+// se logado executa o callback se não vai pro /login
+const ifLogado = function (req, res, callback) {
+	let session = req.session;
 	if (!session.exist) {
 		res.redirect('/login');
 	} else {
-		res.redirect('/todos');
+		callback();
 	}
+}
+
+router.get('/', (req, res) => {
+	ifLogado(req, res, function () {
+		res.redirect('/todos');
+	});
 });
 
 router.get('/login', function (req, res) {
@@ -69,12 +76,14 @@ router.get('/sair', function (req, res) {
 });
 
 router.get('/todos', function(req, res) {
-	var session = req.session;
-	cUsuarios.pesquisarPorId(session._id, (usuario) => {
-		res.render('todos', {
-			usuario
+	ifLogado(req, res, function () {
+		var session = req.session;
+		cUsuarios.pesquisarPorId(session._id, (usuario) => {
+			res.render('todos', {
+				usuario
+			});
 		});
-	});
+	})
 });
 
 module.exports = {

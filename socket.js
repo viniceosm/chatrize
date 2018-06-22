@@ -33,13 +33,24 @@ module.exports = function (_io) {
             socket.id = users.length;
             socket.username = socket.request.session.nome;
             users.push({ username: socket.username });
+
+            let connectionsName = connections.map((c) => {
+                return c.username;
+            });
+
+            io.emit('retornoPessoasConectas', connectionsName);
+
+            // manda pros conectados quem acabou de entrar
+            connections.forEach((connection, i) => {
+                connection.emit('retornoConectouSalaTodos', socket.username);
+            });
         });
 
         socket.on('chatMessage', function (dado) {
             io.emit('retornoChatMessage', { msg: dado, user: socket.username });
         });
 
-        // desconectou
+        // desconectou (trocou de rota ou atualizou a mesma)
         socket.on('disconnect', function () {
             users.splice(users.map(function (e) {
                 return e.username;

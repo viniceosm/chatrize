@@ -45,8 +45,30 @@ socket.on('erroCadastrarUsuario', function (data) {
     $('#msgValUsuario').html(data);
 });
 
+// Alguem mandou mensagem
 socket.on('retornoChatMessage', function (dado) {
+    var element = document.querySelector('#mensagens');
+    var tavaNoFinal = (element.scrollHeight - element.scrollTop === element.clientHeight);
+
     $('#mensagens').append('<li><strong>' + dado.user + '</strong>:' + dado.msg);
+    
+    if (tavaNoFinal) {
+        //rola até o fim
+        $("#mensagens").scrollTop($("#mensagens")[0].scrollHeight);
+    }
+});
+
+// Alguem entrou na sala 
+socket.on('retornoConectouSalaTodos', function (dado) {
+    $('#mensagens').append('<li class="text-center"><strong>' + dado + ' entrou</strong>');
+});
+
+// Quando entra na sala retorna as pessoas conectadas nela
+socket.on('retornoPessoasConectas', function (connectionsName) {
+    $('#pessoasOnline').html('');
+    connectionsName.forEach(function (name) {
+        $('#pessoasOnline').append('<li class="text-center">' + name);
+    });
 });
 
 function validaBarraUsuario() {

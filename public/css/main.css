@@ -36,12 +36,12 @@ body {
     bottom:-5px;
     position: fixed;
     right: -5px;
-    z-index: 0;
-    -webkit-filter: blur(20px);
-    -moz-filter: blur(20px);
-    -o-filter: blur(20px);
-    -ms-filter: blur(20px);
-    filter: blur(20px);
+    z-index: -50;
+    -webkit-filter: blur(29px);
+    -moz-filter: blur(29px);
+    -o-filter: blur(29px);
+    -ms-filter: blur(29px);
+    filter: blur(29px);
     margin:-25px;
 }
 
@@ -50,9 +50,11 @@ body {
 }
 .panel.header, .panel.conversas, .panel.contatos, .panel.contato {
     height: 109px;
+    margin-bottom: 0px;
 }
 .panel.conversas, .panel.contatos {
-    height: 73vh;
+    height: 68vh;
+    margin-bottom: 0px;
     overflow: auto;
 }
 .panel.contatos > .panel-body {
@@ -65,14 +67,19 @@ body {
     margin: 0px;
 }
 
-#mensagens {
+.panel-body {
+    width: 100%;
+}
+
+#mensagens, #pessoasOnline {
     color: white;
-    height: 55vh;
+    height: 49vh;
     overflow: auto;
 }
 
-#mensagens li {
+#mensagens li, #pessoasOnline li {
     list-style: none;
+    word-wrap: break-word;
 }
 
 .form-control {
@@ -81,6 +88,16 @@ body {
 
 .nopadding-xs {
     padding: 0px;
+}
+
+.nav-tabs > li {
+    float:none;
+    display:inline-block;
+    zoom:1;
+}
+
+.nav-tabs {
+    text-align:center;
 }
 
 @media only screen and (min-width: 600px) {
