@@ -50,7 +50,7 @@ socket.on('retornoChatMessage', function (dado) {
     var element = document.querySelector('#mensagens');
     var tavaNoFinal = (element.scrollHeight - element.scrollTop === element.clientHeight);
 
-    $('#mensagens').append('<li><strong>' + dado.user + '</strong>:' + dado.msg);
+    $('#mensagens').append('<li><strong>' + dado.user + '</strong>: ' + dado.msg);
     
     if (tavaNoFinal) {
         //rola até o fim
