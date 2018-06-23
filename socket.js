@@ -28,17 +28,14 @@ module.exports = function (_io) {
         
         //conectou na sala todos
         socket.on('conectouSalaTodos', function () {
-            connections.push(socket);
+            if (!users.includes(socket.request.session.nome)) {
+                connections.push(socket);
+                socket.id = users.length;
+                socket.username = socket.request.session.nome;
+                users.push(socket.username);
+            }
 
-            socket.id = users.length;
-            socket.username = socket.request.session.nome;
-            users.push({ username: socket.username });
-
-            let connectionsName = connections.map((c) => {
-                return c.username;
-            });
-
-            io.emit('retornoPessoasConectas', connectionsName);
+            io.emit('retornoPessoasConectas', users);
 
             // manda pros conectados quem acabou de entrar
             connections.forEach((connection, i) => {
@@ -52,11 +49,11 @@ module.exports = function (_io) {
 
         // desconectou (trocou de rota ou atualizou a mesma)
         socket.on('disconnect', function () {
-            users.splice(users.map(function (e) {
-                return e.username;
-            }).indexOf(socket.username), 1);
-
-            connections.splice(connections.indexOf(socket), 1);
+            // users.splice(users.map(function (e) {
+            //     return e.username;
+            // }).indexOf(socket.username), 1);
+            
+            // connections.splice(connections.indexOf(socket.username), 1);
         });
     });
 };
