@@ -47,17 +47,18 @@ router.get('/cadastro', (req, res) => {
 
 router.post('/logar', function (req, res) {
 	var campos = req.body;
-	cUsuarios.logar({ nome: campos.nome, senha: campos.senha }, function (valido, usuario) {
-		if (valido) {
-			session = req.session;
-			session.exist = true;
-			session.nome = usuario.nome;
-			session._id = usuario._id;
-			res.redirect('/logando');
-		} else {
-			res.redirect('/');
-		}
-	});
+	cUsuarios.logar({ nome: campos.nome, senha: campos.senha })
+		.then(function ([valido, usuario]) {
+			if (valido) {
+				session = req.session;
+				session.exist = true;
+				session.nome = usuario.nome;
+				session._id = usuario._id;
+				res.redirect('/logando');
+			} else {
+				res.redirect('/');
+			}
+		});
 });
 
 router.get('/logando', function (req, res) {
@@ -78,11 +79,12 @@ router.get('/sair', function (req, res) {
 router.get('/todos', function(req, res) {
 	ifLogado(req, res, function () {
 		var session = req.session;
-		cUsuarios.pesquisarPorId(session._id, (usuario) => {
-			res.render('todos', {
-				usuario
+		cUsuarios.pesquisarPorId(session._id)
+			.then((usuario) => {
+				res.render('todos', {
+					usuario
+				});
 			});
-		});
 	})
 });
 

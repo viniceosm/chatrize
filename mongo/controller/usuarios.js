@@ -1,39 +1,49 @@
 const model = require('./../models/usuarios')();
 
 const crud = {
-	pesquisar: (query, callback) => {
-		model.find(query, {})
-		.exec((err, usuarios) => {
-			if (err) throw err;
-			callback(usuarios);
+	pesquisar: (query) => {
+		return new Promise((resolve) => {
+			model.find(query, {})
+				.exec((err, usuarios) => {
+					if (err) throw err;
+					resolve(usuarios);
+				});
 		});
 	},
-	logar: (query, callback) => {
-		model.find(query, {}, (err, usuarios) => {
-			if (err) throw err;
-			if (usuarios.length == 1) {
-				callback(true, usuarios[0]);
-			} else {
-				callback(false);
-			}
+	logar: (query) => {
+		return new Promise((resolve) => {
+			model.find(query, {}, (err, usuarios) => {
+				if (err) throw err;
+				if (usuarios.length == 1) {
+					resolve([true, usuarios[0]]);
+				} else {
+					resolve([false]);
+				}
+			});
 		});
 	},
-	criar: (fields, callback) => {
-		model.create(fields, (err, usuario) => {
-			if (err) throw err;
-			callback();
+	criar: (fields) => {
+		return new Promise((resolve) => {
+			model.create(fields, (err, usuario) => {
+				if (err) throw err;
+				resolve();
+			});
 		});
 	},
-	pesquisarPorId: (query, callback) => {
-		model.findById(query, (err, usuario) => {
-			if (err) throw err;
-			callback(usuario);
+	pesquisarPorId: (query) => {
+		return new Promise((resolve) => {
+			model.findById(query, (err, usuario) => {
+				if (err) throw err;
+				resolve(usuario);
+			});
 		});
 	},
-	pesquisarPorNome: (query, callback) => {
-		model.findOne({ nome: query }, (err, usuario) => {
-			if (err) throw err;
-			callback(usuario);
+	pesquisarPorNome: (query) => {
+		return new Promise((resolve) => {
+			model.findOne({ nome: query }, (err, usuario) => {
+				if (err) throw err;
+				resolve(usuario);
+			});
 		});
 	}
 }
